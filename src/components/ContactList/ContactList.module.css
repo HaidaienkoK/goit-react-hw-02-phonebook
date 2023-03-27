@@ -1,0 +1,25 @@
+.contactName {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.contactNumber{
+    font-weight: bold;
+}
+
+.button {
+    margin-top: 25px;
+    margin-left: 10px;
+    padding: 3px 5px 3px 5px;
+    background-color: white;
+    border: 1px solid rgb(151, 150, 150);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(90, 102, 211);
+}
+
+.button:focus {
+    background-color: rgb(90, 102, 211);
+}
