@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { Section } from './Section/Section';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
@@ -8,10 +8,10 @@ import { Filter } from './Filter/Filter';
 export class App extends Component {
   state = {
     contacts: [
-      { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
-      { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
-      { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
-      { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
+      // { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
+      // { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
+      // { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
+      // { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
   };
@@ -55,6 +55,25 @@ export class App extends Component {
     const newContacts = contacts.filter(contact => contact.id !== e.target.id);
     this.setState({ contacts: newContacts });
   };
+
+  componentDidMount() {
+    const list = window.localStorage.getItem('contact');
+    if (!list) return;
+    try {
+      this.setState({
+        contacts: JSON.parse(list),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      const ContactStringified = JSON.stringify(this.state.contacts);
+      window.localStorage.setItem('contact', ContactStringified);
+    }
+  }
 
   render() {
     return (
